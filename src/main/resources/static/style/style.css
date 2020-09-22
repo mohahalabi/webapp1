@@ -1,0 +1,30 @@
+
+.container {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+
+.card {
+    margin: 14px;
+    width: 22rem;
+    min-width: 18rem;
+    align-content: center;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+}
+
+.tooltip-inner {
+    background-color: white;
+    border: 1px solid #2E2E2E;
+    color: #2E2E2E;
+    max-width: 300px;
+    width: inherit;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: #2E2E2E !important;
+}

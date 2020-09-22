@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="master::headerfiles(title='Aggungi nuovo item')">
+
+<body>
+<header th:replace="master::header(searchBar='no')"></header>
+
+<main>
+
+    <div class="row m-4 justify-content-center">
+        <div class="card border-info p-4" style="width: 45rem;">
+            <div class="jumbotron text-center py-4">
+                <h2 class="jumbotron-heading"> Aggiungi un nuovo item</h2>
+            </div>
+            <div class="card-body">
+                <form class="text-left" enctype="multipart/form-data" method="post"
+                      th:object="${item}">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="" for="type">Tipo annuncio</label>
+                            <select class="form-control" id="type" name="type" th:field="*{type}">
+                                <option th:each="type : ${T(ch.supsi.webapp.web.model.ItemType).values()}"
+                                        th:text="${type}"
+                                        th:value="${type}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="title">Titolo</label>
+                            <input class="form-control" id="title" placeholder="Titolo" th:field="*{title}"
+                                   type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="" for="category">Categoria</label>
+                            <select class="form-control" id="category" name="category" th:field="*{category}">
+                                <option th:each="cat : ${categories}" th:text="${cat.name}"
+                                        th:value="${cat.name}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="" for="description">Descrizione</label>
+                            <textarea class="form-control" id="description" name="description" rows="7"
+                                      th:field="*{description}"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="" for="file">Inserire un'immagine</label>
+                            <input accept="image/jpeg" class="form-control-file" id="file" name="imageFile" type="file">
+                        </div>
+
+                        <div class="form-group text-center">
+                            <input class="btn btn-lg btn-info btn-block mt-5"
+                                   th:value="${item.id == 0} ? 'Crea item':'Modifica item'"
+                                   type="submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="master::footer"></footer>
+</body>
+</html>

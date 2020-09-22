@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="master::headerfiles(title='Dettagli item')">
+
+<body>
+<header th:replace="master::header(searchBar='no')"></header>
+
+<section class="container">
+    <div class="jumbotron text-center">
+        <h2 class="jumbotron-heading" th:text="${item.title}">Titolo</h2>
+        <h6 th:text="@{${item.type}+' da '+${item.author.name}}">autore</h6>
+        <p th:text="@{'Categoria: '+${item.category.name}}">categoria</p>
+        <p th:text="@{'Creato il : '+${#dates.format(item.date, 'dd-MMM-yyyy - HH:mm')}}">data</p>
+    </div>
+</section>
+
+<main class="mb-4" role="main">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h3 class="my-3">Descrizione</h3>
+                <p class="text-justify" th:text="${item.description}">descrizione</p>
+            </div>
+            <div class="col-md">
+                <img alt="" class="img-fluid rounded float-right"
+                     th:if="*{item.image != null}"
+                     th:src="@{'/item/'+${item.id}+'/image'}">
+            </div>
+        </div>
+    </div>
+</main>
+
+<aside>
+    <div class="container">
+        <a class="btn btn-primary" sec:authorize="isAuthenticated()"
+           th:href="@{'/item/'+${item.id}+'/edit'}">Modifica</a>
+
+        <a class="btn btn-primary" id="creaAstaBtn" name="creaAstaBtn" role="button"
+           sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/item/'+${item.id}+'/creaAsta'}">Crea asta</a>
+
+        <a class="btn btn-outline-info" id="favoritoBtn" name="favoritoBtn" role="button"
+           sec:authorize="isAuthenticated()" th:href="@{'/item/'+${item.id}+'/aggiungiFavorito'}">Aggiungi favorito</a>
+
+        <a class="btn btn-danger ml-4" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/item/'+${item.id}+'/delete'}">Rimuovi</a>
+    </div>
+</aside>
+
+<aside>
+    <div class="container" th:if="${item.asta != null}">
+
+        <div class="row m-2">
+            <h6 class="lead font-weight-bold">Asta</h6>
+        </div>
+        <div class="row m-2">
+            <div class="jumbotron col-sm-8 p-1 text-left">
+                <p class="lead" th:text="@{'Prezzo di Partenza: '+${item.asta.prezzoBase}}"> Asta</p>
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-secondary" sec:authorize="isAuthenticated()"
+                   th:href="@{'/item/'+${item.id}+'/rilanciaAsta'}">Rilancia</a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<script th:src="@{/scripts/favorito.js}" type="text/javascript"></script>
+
+<footer th:replace="master::footer"></footer>
+</body>
+
+</html>

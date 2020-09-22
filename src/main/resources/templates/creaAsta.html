@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="master::headerfiles(title='Crea asta')">
+
+<body>
+<header th:replace="master::header(searchBar='no')"></header>
+
+<main>
+    <div class="row m-4 justify-content-center">
+        <div class="card border-info p-4" style="width: 45rem;">
+            <div class="jumbotron text-center py-4">
+                <h2 class="jumbotron-heading"> Crea asta</h2>
+            </div>
+            <div class="card-body">
+                <form class="text-left" method="post" th:object="${asta}">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="" for="prezzoBase">Prezzo Base</label>
+                            <input class="form-control" id="prezzoBase" placeholder="0" th:field="*{prezzoBase}"
+                                   type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="rilancio">Rilancio</label>
+                            <input class="form-control" id="rilancio" placeholder="0" th:field="*{rilancio}"
+                                   type="text">
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-lg btn-info btn-block mt-5" type="submit"> Crea asta</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="master::footer"></footer>
+</body>
+</html>

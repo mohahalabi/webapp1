@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="master::headerfiles(title='Accedi')">
+
+<body>
+<header th:replace="master::header(searchBar='no')"></header>
+
+<main>
+
+    <div class="container">
+
+        <div class="row mx-1 my-5 justify-content-center">
+            <div class="card border-dark text-center p-4" style="width: 30rem;">
+                <div class="jumbotron text-center py-4">
+                    <h2 class="jumbotron-heading"> Accedi </h2>
+                </div>
+                <div class="card-body">
+                    <form class="text-center" method="post" th:action="@{/login}">
+                        <!-- Username -->
+                        <div class="row mb-5">
+                            <input class="form-control" id="username" name="username" placeholder="Username"
+                                   type="text">
+                        </div>
+                        <!-- Password -->
+                        <div class="row mb-5">
+                            <input class="form-control" id="password" name="password" placeholder="Password"
+                                   type="password">
+                        </div>
+                        <!-- Sign in button -->
+                        <div class="row mb-5">
+                            <button class="btn btn-lg btn-info btn-block" type="submit">Accedi</button>
+                        </div>
+                        <!-- Register -->
+                        <div class="row justify-content-center">
+                            <p>Non sei registrato?
+                                <a th:href="@{/register}">Registati</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</main>
+<footer th:replace="master::footer"></footer>
+</body>
+
+</html>
